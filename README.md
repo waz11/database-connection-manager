@@ -1,4 +1,5 @@
-# Database Connection Manager
+# Velotix - Front-End Developer Interview Task
+# Project: Database Connection Manager
 
 This is a sample project for managing database connections. It consists of a React-based front-end application and a fake-server to mock backend functionality.
 
