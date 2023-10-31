@@ -1,6 +1,14 @@
 {
   "databases": [
     {
+      "id": 1,
+      "name": "Database 1",
+      "url": "https://db1.example.com",
+      "username": "user1",
+      "password": "password1",
+      "type": "Snowflake"
+    },
+    {
       "id": 2,
       "name": "Database 2",
       "url": "https://db2.example.com",
@@ -15,14 +23,6 @@
       "username": "user3",
       "password": "password3",
       "type": "MySQL"
-    },
-    {
-      "name": "New Database",
-      "url": "https://newdb.example.com",
-      "username": "newuser",
-      "password": "newpassword",
-      "type": "Snowflake",
-      "id": 4
     }
   ]
 }
