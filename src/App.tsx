@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FunctionComponent, useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
 
-function App() {
+interface IProps {}
+
+type status = 'WORKING' | 'NOT WORKING' | 'LOADING'
+
+const statusInfo = {
+  'WORKING': {
+    statusMessage: 'Fake server is working',
+    statusColor: 'green',
+  },
+  'NOT WORKING': {
+    statusMessage: 'Fake server is not working',
+    statusColor: 'red',
+  },
+  'LOADING': {
+    statusMessage: 'Loading...',
+    statusColor: 'yellow',
+  },
+};
+
+const App: FunctionComponent<IProps> = () => {
+  const [serverStatus, setServerStatus] = useState<status>('LOADING');
+
+  const { statusMessage, statusColor } = useMemo(() => statusInfo[serverStatus], [serverStatus]);
+
+  useEffect(() => {
+    const fakeServerUrl = 'http://localhost:4000/databases';
+
+    axios.get(fakeServerUrl)
+      .then((response) => {
+        setServerStatus('WORKING');
+        console.log(response.data);
+      })
+      .catch(() => {
+        setServerStatus('NOT WORKING');
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h5 style={{ color: statusColor }}>
+        {statusMessage}
+      </h5>
     </div>
   );
 }
