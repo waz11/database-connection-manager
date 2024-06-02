@@ -1,23 +1,21 @@
-
-interface ITableField {
+export interface ITableField {
   id: string;
   title: string;
 }
 
-const tableFields: ITableField[] = [
-  { id: "name", title: "Database Name" },
-  { id: "username", title: "Username" },
-  { id: "type", title: "Database Type" },
-];
+interface IProps {
+  tableFields: ITableField[];
+  data: any[];
+}
 
-const Table = ({ data }: any) => {
+const Table = ({ tableFields, data }: IProps) => {
   return (
     <table>
-        <tr>
-          {tableFields.map((field) => (
-            <th key={field.id}>{field.title}</th>
-          ))}
-        </tr>
+      <tr>
+        {tableFields.map((field) => (
+          <th key={field.id}>{field.title}</th>
+        ))}
+      </tr>
       <tbody>
         {data.map((row: any) => (
           <tr>
