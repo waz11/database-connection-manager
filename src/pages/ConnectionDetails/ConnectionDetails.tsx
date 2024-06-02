@@ -2,7 +2,6 @@ import "./ConnectionDetails.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ConnectionField from "../../components/ConnectionField/ConnectionField";
 
 interface IConnection {
   id: string;
