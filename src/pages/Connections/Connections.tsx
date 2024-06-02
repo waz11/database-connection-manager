@@ -33,17 +33,19 @@ const Connections = () => {
     });
   }, []);
 
-  const onClick = (id: string) => {
+  const onRowClick = (id: string) => {
     navigate(`/connection/${id}`);
   };
 
   return (
     <div>
-      {/* <Table tableFields={tableFields} data={data} /> */}
-      {/* <ConnectionForm /> */}
+      <ConnectionForm isEditMode />
 
-      <BasicTable tableFields={tableFields} data={data} onRowClick={onClick} />
-      {/* <BasicTable /> */}
+      {/* <BasicTable
+        tableFields={tableFields}
+        data={data}
+        onRowClick={onRowClick}
+      /> */}
     </div>
   );
 };
