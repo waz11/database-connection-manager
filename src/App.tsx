@@ -6,15 +6,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path={"/"} element={<Connections />} />
-          <Route path="connection" element={<ConnectionDetails />} />
+        <Route path={"/"} element={<Connections />} />
+        <Route path="/connection/:id" element={<ConnectionDetails />} />
       </Routes>
     </BrowserRouter>
-
-    // <div>
-    //   <Connections />
-    //   <ConnectionDetails />
-    // </div>
   );
 };
 
