@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import ConnectionForm from "../../components/ConnectionForm/ConnectionForm";
 import BasicTable, { ITableField } from "../../components/Table/BasicTable";
 import { Link } from "react-router-dom";
+import FormDialog from "../../components/ConnectionForm/FormDialog";
+import ConnectionFormDialog from "../../components/ConnectionForm/ConnectionFormDIalog";
 
 const tableFields: ITableField[] = [
   { id: "name", title: "Database Name" },
@@ -23,6 +25,7 @@ export interface IConnection {
 
 const Connections = () => {
   const [data, setData] = useState<IConnection[]>([]);
+  const [showAddConnectionDialog, setShowAddConnectionDialog] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,15 +40,21 @@ const Connections = () => {
     navigate(`/connection/${id}`);
   };
 
+  const onShowCloseDialog = () =>
+    setShowAddConnectionDialog(!showAddConnectionDialog);
+
   return (
     <div>
-      <ConnectionForm isEditMode />
+      <button onClick={onShowCloseDialog}>+</button>
+      {showAddConnectionDialog && (
+        <ConnectionFormDialog onClose={onShowCloseDialog} />
+      )}
 
-      {/* <BasicTable
+      <BasicTable
         tableFields={tableFields}
         data={data}
         onRowClick={onRowClick}
-      /> */}
+      />
     </div>
   );
 };

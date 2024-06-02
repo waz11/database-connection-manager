@@ -41,29 +41,33 @@ const ConnectionForm = ({ connection = data, isEditMode }: any) => {
   }, []);
 
   return (
-    <table>
-      {connectionFields.map((field) => {
-        const { id, title } = field;
-        return (
-          <tr key={id}>
-            <td>{title}</td>
-            <td>
-              {isEditMode ? (
-                <input
-                  {...register(id, {
-                    required: "Please enter your first name.",
-                  })}
-                  placeholder={getValues(id)}
-                  disabled={field.locked}
-                />
-              ) : (
-                connection?.[field.id] || ""
-              )}
-            </td>
-          </tr>
-        );
-      })}
-    </table>
+    <div>
+      <FormDialog>
+        <table>
+          {connectionFields.map((field) => {
+            const { id, title } = field;
+            return (
+              <tr key={id}>
+                <td>{title}</td>
+                <td>
+                  {isEditMode ? (
+                    <input
+                      {...register(id, {
+                        required: "Please enter your first name.",
+                      })}
+                      placeholder={getValues(id)}
+                      disabled={field.locked}
+                    />
+                  ) : (
+                    connection?.[field.id] || ""
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </table>
+      </FormDialog>
+    </div>
   );
 };
 

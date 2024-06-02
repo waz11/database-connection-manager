@@ -7,27 +7,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog({ title, children }: any) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function FormDialog({ title, onClose, children }: any) {
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        +
-      </Button>
-      <Dialog open={open}>
+      <Dialog open>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={onClose}>Cancel</Button>
           <Button type="submit">Subscribe</Button>
         </DialogActions>
       </Dialog>
