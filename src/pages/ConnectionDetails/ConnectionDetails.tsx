@@ -2,6 +2,7 @@ import "./ConnectionDetails.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ConnectionForm from "../../components/ConnectionForm/ConnectionForm";
 
 interface IConnection {
   id: string;
@@ -46,14 +47,7 @@ const ConnectionDetails = () => {
       <div className="title">Connection Details {id}</div>
 
       <div className="info">
-        <table>
-          {connectionFields.map((field) => (
-            <tr key={field.id}>
-              <td>{field.title}</td>
-              <td>{connection?.[field.id] || ""}</td>
-            </tr>
-          ))}
-        </table>
+        <ConnectionForm connection={connection} />
       </div>
     </div>
   );

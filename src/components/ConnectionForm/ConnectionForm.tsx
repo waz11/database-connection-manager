@@ -26,7 +26,7 @@ const data = {
   type: "Snowflake",
 };
 
-const ConnectionForm = ({ connection = data, isEditMode }: any) => {
+const ConnectionForm = ({ connection, isEditMode }: any) => {
   const {
     register,
     getValues,
@@ -43,8 +43,8 @@ const ConnectionForm = ({ connection = data, isEditMode }: any) => {
   return (
     <table>
       {connectionFields.map((field) => {
-        const { id, title } = field;
-        return (
+        const { id, title, locked } = field;
+        return !(locked && isEditMode) ? (
           <tr key={id}>
             <td>{title}</td>
             <td>
@@ -54,14 +54,14 @@ const ConnectionForm = ({ connection = data, isEditMode }: any) => {
                     required: "Please enter your first name.",
                   })}
                   placeholder={getValues(id)}
-                  disabled={field.locked}
+                  disabled={locked}
                 />
               ) : (
-                connection?.[field.id] || ""
+                connection?.[id] || ""
               )}
             </td>
           </tr>
-        );
+        ) : null;
       })}
     </table>
   );
