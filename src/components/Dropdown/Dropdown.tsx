@@ -1,36 +1,46 @@
-import { FormControl, MenuItem, Select } from "@mui/material";
-import { useState } from "react";
+import { useEffect } from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 interface IProps {
+  label: string;
   options: string[];
   initialValue?: string;
-  onOptionChanged: (option: string) => void;
-  disabled?: boolean;
+  onChange: (value: string) => void;
 }
 
-const Dropdown = ({
-  initialValue,
+const DropDown = ({
+  onChange,
+  label,
   options,
-  onOptionChanged,
-  disabled,
+  initialValue = options[0],
 }: IProps) => {
-  const [value, setValue] = useState(initialValue || options[0]);
-
-  const onChange = (e: any) => {
-    const option = e.target.value;
-    setValue(option);
-    onOptionChanged(option);
-  };
+  useEffect(() => {
+    onChange(initialValue);
+  }, []);
 
   return (
-    <select onChange={onChange} value={value} disabled={disabled}>
+    <TextField
+      id="standard-select-currency-native"
+      select
+      label={label}
+      defaultValue={initialValue}
+      SelectProps={{
+        native: true,
+      }}
+      variant="standard"
+    >
       {options.map((option) => (
         <option key={option} value={option}>
           {option}
         </option>
       ))}
-    </select>
+    </TextField>
   );
 };
 
-export default Dropdown;
+export default DropDown;

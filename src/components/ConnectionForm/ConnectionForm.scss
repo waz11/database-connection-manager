@@ -4,21 +4,10 @@
   gap: 20px;
 
   .form-fields {
-    table {
-      tr {
-        display: flex;
-        gap: 40px;
-        justify-content: space-between;
-      }
-
-      td {
-        width: 100%;
-      }
-
-      select {
-        width: 100%;
-      }
-    }
+    display: flex;
+    padding-top: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .required:after {
