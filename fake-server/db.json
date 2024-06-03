@@ -31,6 +31,38 @@
       "username": "dfg",
       "password": "dfg",
       "type": "Snowflake"
+    },
+    {
+      "id": "35a9",
+      "name": "l;kl;kl",
+      "url": ";klkl;",
+      "username": "k;lk",
+      "password": "llk;",
+      "type": "Trino"
+    },
+    {
+      "id": "f256",
+      "name": "m,.",
+      "url": "m,.",
+      "username": "m,.",
+      "password": "k.",
+      "type": "Snowflake"
+    },
+    {
+      "id": "c16f",
+      "name": "sdfd",
+      "url": "sdfds",
+      "username": "sdf",
+      "password": "sdfds",
+      "type": "Snowflake"
+    },
+    {
+      "id": "a055",
+      "name": "sdf",
+      "url": "sdf",
+      "username": "dsf",
+      "password": "sdf",
+      "type": "MySQL"
     }
   ]
 }

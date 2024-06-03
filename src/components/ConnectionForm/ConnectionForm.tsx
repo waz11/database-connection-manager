@@ -25,6 +25,7 @@ const ConnectionForm = ({
     setValue,
     getValues,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -49,6 +50,9 @@ const ConnectionForm = ({
                   required,
                 })}
                 onChange={(value) => setValue(id, value)}
+                isEditMode={isEditMode}
+                defaultValue={connection ? connection?.[id] || " " : undefined}
+                value={watch(id)}
               />
             ) : (
               <TextField
@@ -80,6 +84,8 @@ const ConnectionForm = ({
             Save
           </Button>
         )}
+
+        <button onClick={() => console.log(errors)}>sdfsdf</button>
       </div>
     </div>
   );
