@@ -8,7 +8,7 @@ import NavigateButton from "../../components/NavigateButton/NavigateButton";
 import ROUTES from "../../routes";
 
 const ConnectionDetails = () => {
-  const [connection, setConnection] = useState<Record<string, string>>();
+  const [connection, setConnection] = useState<Record<string, string>>({});
   const { id } = useParams();
 
   useEffect(() => {

@@ -20,6 +20,7 @@ const ConnectionFormDialog = ({ onClose }: any) => {
         fields={addingConnectionFields}
         onSubmit={onSubmit}
         onClose={onClose}
+        isEditMode
       />
     </FormDialog>
   );

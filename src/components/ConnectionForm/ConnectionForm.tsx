@@ -10,9 +10,16 @@ interface IProps {
   onSubmit?: any;
   onClose?: any;
   connection?: any;
+  isEditMode?: boolean;
 }
 
-const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
+const ConnectionForm = ({
+  fields,
+  connection,
+  onSubmit,
+  onClose,
+  isEditMode,
+}: IProps) => {
   const {
     register,
     setValue,
@@ -45,11 +52,13 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
               />
             ) : (
               <TextField
-                id="id"
+                id={id}
                 label={`${title}${required ? " *" : ""}`}
                 {...register(id, {
                   required,
                 })}
+                defaultValue={connection ? connection?.[id] || " " : undefined}
+                inputProps={{ readOnly: !isEditMode }}
               />
             )}
           </div>
