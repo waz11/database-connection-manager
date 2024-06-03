@@ -39,8 +39,10 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
                 <td>
                   {options ? (
                     <Dropdown
+                      initialValue={getValues(id)}
                       options={options}
                       onOptionChanged={(value) => setValue(id, value)}
+                      disabled={!onSubmit}
                     />
                   ) : (
                     <input
