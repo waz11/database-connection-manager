@@ -1,37 +1,26 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormDialog from "./FormDialog";
-import { connectionFields } from "../../utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  IField,
+  SERVER_URL,
+  connectionFields,
+  connectionTypes,
+} from "../../utils";
+import axios from "axios";
 
-enum EConnectionType {
-  SNOWFLAKE = "Snowflake",
-  TRINO = "Trino",
-  MY_SQL = "MySQL",
+interface IProps {
+  fields: IField[];
+  connection?: any;
+  isEditMode?: boolean;
 }
 
-// type ConnectionFormFields = {
-//   name: string;
-//   url: string;
-//   username: string;
-//   password: string;
-//   type: EConnectionType;
-// };
-
-const data = {
-  id: 1,
-  name: "Database 1",
-  url: "https://db1.example.com",
-  username: "user1",
-  password: "password1",
-  type: "Snowflake",
-};
-
-const ConnectionForm = ({ connection, isEditMode }: any) => {
+const ConnectionForm = ({ fields, connection, isEditMode }: IProps) => {
   const {
     register,
     getValues,
     setValue,
-    formState: { errors, defaultValues = data },
+    handleSubmit,
+    formState: { errors, defaultValues = connection },
   } = useForm();
 
   useEffect(() => {
@@ -40,30 +29,32 @@ const ConnectionForm = ({ connection, isEditMode }: any) => {
     }
   }, []);
 
+  const onSubmit = async (data: any) => {
+    await axios
+      .post(SERVER_URL, data)
+      .then((response) => console.log(response));
+  };
+
   return (
-    <table>
-      {connectionFields.map((field) => {
-        const { id, title, locked } = field;
-        return !(locked && isEditMode) ? (
+    <form>
+      <table>
+        {fields.map(({ id, title, locked, type = "text" }) => (
           <tr key={id}>
             <td>{title}</td>
             <td>
-              {isEditMode ? (
-                <input
-                  {...register(id, {
-                    required: "Please enter your first name.",
-                  })}
-                  placeholder={getValues(id)}
-                  disabled={locked}
-                />
-              ) : (
-                connection?.[id] || ""
-              )}
+              <input
+                {...register(id)}
+                placeholder={getValues(id)}
+                disabled={locked}
+                type={type}
+              />
             </td>
           </tr>
-        ) : null;
-      })}
-    </table>
+        ))}
+      </table>
+
+      <button onClick={handleSubmit(onSubmit)}>button</button>
+    </form>
   );
 };
 

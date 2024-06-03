@@ -1,7 +1,7 @@
 {
   "databases": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Database 1",
       "url": "https://db1.example.com",
       "username": "user1",
@@ -9,7 +9,7 @@
       "type": "Snowflake"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Database 2",
       "url": "https://db2.example.com",
       "username": "user2",
@@ -17,12 +17,23 @@
       "type": "Trino"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Database 3",
       "url": "https://db3.example.com",
       "username": "user3",
       "password": "password3",
       "type": "MySQL"
+    },
+    {
+      "id": "6354"
+    },
+    {
+      "id": "95fd",
+      "name": "1111",
+      "url": "111",
+      "username": "11sdfds",
+      "password": "fsdfds",
+      "type": "fsdfdsf"
     }
   ]
 }
