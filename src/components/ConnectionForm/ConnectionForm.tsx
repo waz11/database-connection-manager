@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { IField } from "../../utils";
 import { useEffect } from "react";
 import Dropdown from "../Dropdown/Dropdown";
+import { ErrorMessage } from "@hookform/error-message";
+import classNames from "classnames";
 
 interface IProps {
   fields: IField[];
@@ -33,9 +35,15 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
       <form className="form-fields">
         <table>
           <tbody>
-            {fields.map(({ id, title, locked, type = "text", options }) => (
+            {fields.map(({ id, title, type = "text", options, required }) => (
               <tr key={id}>
-                <td>{title}</td>
+                <td>
+                  <span
+                    className={classNames({ required: required && onSubmit })}
+                  >
+                    {title}
+                  </span>
+                </td>
                 <td>
                   {options ? (
                     <Dropdown
@@ -45,12 +53,16 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
                       disabled={!onSubmit}
                     />
                   ) : (
-                    <input
-                      {...register(id, { required: true })}
-                      placeholder={getValues(id)}
-                      disabled={!onSubmit}
-                      type={type}
-                    />
+                    <div className="form-input">
+                      <input
+                        {...register(id, {
+                          required,
+                        })}
+                        placeholder={getValues(id)}
+                        disabled={!onSubmit}
+                        type={type}
+                      />
+                    </div>
                   )}
                 </td>
               </tr>
@@ -58,6 +70,25 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
           </tbody>
         </table>
       </form>
+
+      <ErrorMessage errors={errors} name="singleErrorInput" />
+
+      <ErrorMessage
+        errors={errors}
+        name="singleErrorInput"
+        render={({ message }) => <p>{message}</p>}
+      />
+
+      <ErrorMessage
+        errors={errors}
+        name="multipleErrorInput"
+        render={({ messages }) =>
+          messages &&
+          Object.entries(messages).map(([type, message]) => (
+            <p key={type}>{message}</p>
+          ))
+        }
+      />
 
       <div className="actions">
         {onClose && <button onClick={onClose}>Cancel</button>}

@@ -3,8 +3,8 @@ export interface IField {
   title: string;
   type?: EFieldType;
   locked?: boolean;
-  secret?: boolean;
   options?: string[];
+  required?: boolean;
 }
 
 export enum EFieldType {
@@ -16,20 +16,21 @@ export enum EFieldType {
 export const connectionTypes = ["Snowflake", "Trino", "MySQL"];
 
 export const connectionFields: IField[] = [
-  { id: "id", title: "ID" },
-  { id: "name", title: "Database Name" },
-  { id: "url", title: "URL" },
-  { id: "username", title: "Username" },
+  { id: "id", title: "ID", required: true },
+  { id: "name", title: "Database Name", required: true },
+  { id: "url", title: "URL", required: true },
+  { id: "username", title: "Username", required: true },
   {
     id: "password",
     title: "Password",
     type: EFieldType.PASSWORD,
-    secret: true,
+    required: true,
   },
   {
     id: "type",
     title: "Database Type",
     options: connectionTypes,
+    required: true,
   },
 ];
 

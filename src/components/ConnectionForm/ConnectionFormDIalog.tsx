@@ -11,6 +11,7 @@ const ConnectionFormDialog = ({ onClose }: any) => {
 
   const onSubmit = async (connection: any) => {
     dispatch(addConnection(connection) as any);
+    onClose();
   };
 
   return (

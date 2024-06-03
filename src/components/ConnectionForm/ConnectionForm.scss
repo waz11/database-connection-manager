@@ -21,6 +21,11 @@
     }
   }
 
+  .required:after {
+    content: "*";
+    color: red;
+  }
+
   .actions {
     display: flex;
     gap: 10px;

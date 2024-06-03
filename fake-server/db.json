@@ -23,6 +23,13 @@
       "username": "user3",
       "password": "password3",
       "type": "MySQL"
+    },
+    {
+      "id": "087d",
+      "name": "s",
+      "url": "s",
+      "username": "s",
+      "password": "s"
     }
   ]
 }

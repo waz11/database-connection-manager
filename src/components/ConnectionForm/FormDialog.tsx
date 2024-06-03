@@ -12,10 +12,6 @@ export default function FormDialog({ title, onClose, onSave, children }: any) {
       <Dialog open>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>{children}</DialogContent>
-        {/* <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={onSave}>Save</Button>
-        </DialogActions> */}
       </Dialog>
     </React.Fragment>
   );

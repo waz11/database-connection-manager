@@ -25,7 +25,9 @@ const Dropdown = ({
   return (
     <select onChange={onChange} value={value} disabled={disabled}>
       {options.map((option) => (
-        <option value={option}>{option}</option>
+        <option key={option} value={option}>
+          {option}
+        </option>
       ))}
     </select>
   );
