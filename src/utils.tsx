@@ -1,31 +1,36 @@
 export interface IField {
   id: string;
   title: string;
-  type: EFieldType;
+  type?: EFieldType;
   locked?: boolean;
   secret?: boolean;
+  options?: string[];
 }
 
 export enum EFieldType {
   TEXT = "test",
   PASSWORD = "password",
-  SINGLE_SELECT = "single_select",
+  SELECT = "select",
 }
 
 export const connectionTypes = ["Snowflake", "Trino", "MySQL"];
 
 export const connectionFields: IField[] = [
-  { id: "id", title: "ID", type: EFieldType.TEXT },
-  { id: "name", title: "Database Name", type: EFieldType.TEXT },
-  { id: "url", title: "URL", type: EFieldType.TEXT },
-  { id: "username", title: "Username", type: EFieldType.TEXT },
+  { id: "id", title: "ID" },
+  { id: "name", title: "Database Name" },
+  { id: "url", title: "URL" },
+  { id: "username", title: "Username" },
   {
     id: "password",
     title: "Password",
     type: EFieldType.PASSWORD,
     secret: true,
   },
-  { id: "type", title: "Database Type", type: EFieldType.SINGLE_SELECT },
+  {
+    id: "type",
+    title: "Database Type",
+    options: connectionTypes,
+  },
 ];
 
 const ex = ["id"];

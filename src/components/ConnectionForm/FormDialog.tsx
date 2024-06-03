@@ -6,30 +6,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog({
-  title,
-  onClose,
-  children,
-  onSubmit,
-}: any) {
+export default function FormDialog({ title, onClose, onSave, children }: any) {
   return (
     <React.Fragment>
-      <Dialog
-        open
-        PaperProps={{
-          component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            onSubmit();
-          },
-        }}
-      >
+      <Dialog open>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>{children}</DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button type="submit">Save</Button>
-        </DialogActions>
+          <Button onClick={onSave}>Save</Button>
+        </DialogActions> */}
       </Dialog>
     </React.Fragment>
   );

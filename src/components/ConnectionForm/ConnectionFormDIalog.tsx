@@ -1,4 +1,3 @@
-import axios from "axios";
 import { SERVER_URL, addingConnectionFields } from "../../utils";
 import ConnectionForm from "./ConnectionForm";
 import FormDialog from "./FormDialog";
@@ -15,12 +14,12 @@ const ConnectionFormDialog = ({ onClose }: any) => {
   };
 
   return (
-    <FormDialog
-      title={connectionFormDialogTitle}
-      onClose={onClose}
-      // onSubmit={onSubmit}
-    >
-      <ConnectionForm fields={addingConnectionFields} />
+    <FormDialog title={connectionFormDialogTitle} onClose={onClose}>
+      <ConnectionForm
+        fields={addingConnectionFields}
+        onSubmit={onSubmit}
+        onClose={onClose}
+      />
     </FormDialog>
   );
 };

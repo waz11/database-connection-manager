@@ -1,62 +1,72 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useEffect, useState } from "react";
-import {
-  IField,
-  SERVER_URL,
-  connectionFields,
-  connectionTypes,
-} from "../../utils";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addConnection } from "../../store/connections/actions";
+import "./ConnectionForm.scss";
+import { useForm } from "react-hook-form";
+import { IField } from "../../utils";
+import { useEffect } from "react";
+import Dropdown from "../Dropdown/Dropdown";
 
 interface IProps {
   fields: IField[];
+  onSubmit?: any;
+  onClose?: any;
   connection?: any;
-  isEditMode?: boolean;
 }
 
-const ConnectionForm = ({ fields, connection, isEditMode }: IProps) => {
-  const dispatch = useDispatch();
-
+const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
   const {
     register,
-    getValues,
     setValue,
+    getValues,
     handleSubmit,
-    formState: { errors, defaultValues = connection },
+    formState: { errors },
   } = useForm();
 
   useEffect(() => {
-    for (const key in connection) {
-      setValue(key, connection[key]);
+    if (connection) {
+      for (const key in connection) {
+        setValue(key, connection[key]);
+      }
     }
-  }, []);
-
-  const onSubmit = async (connection: any) => {
-    dispatch(addConnection(connection) as any);
-  };
+  }, [connection]);
 
   return (
-    <form>
-      <table>
-        {fields.map(({ id, title, locked, type = "text" }) => (
-          <tr key={id}>
-            <td>{title}</td>
-            <td>
-              <input
-                {...register(id)}
-                placeholder={getValues(id)}
-                disabled={locked}
-                type={type}
-              />
-            </td>
-          </tr>
-        ))}
-      </table>
+    <div className="connection-form">
+      <form className="form-fields">
+        <table>
+          <tbody>
+            {fields.map(({ id, title, locked, type = "text", options }) => (
+              <tr key={id}>
+                <td>{title}</td>
+                <td>
+                  {options ? (
+                    <Dropdown
+                      options={options}
+                      onOptionChanged={(value) => setValue(id, value)}
+                    />
+                  ) : (
+                    <input
+                      {...register(id, { required: true })}
+                      placeholder={getValues(id)}
+                      disabled={!onSubmit}
+                      type={type}
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </form>
 
-      <button onClick={handleSubmit(onSubmit)}>button</button>
-    </form>
+      <div className="actions">
+        {onClose && <button onClick={onClose}>Cancel</button>}
+
+        {onSubmit && (
+          <button onClick={handleSubmit(() => onSubmit(getValues()))}>
+            Save
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 

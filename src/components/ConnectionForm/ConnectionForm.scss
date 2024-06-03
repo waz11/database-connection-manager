@@ -1,0 +1,21 @@
+.connection-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-fields {
+    table {
+      tr {
+        display: flex;
+        gap: 40px;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+}
