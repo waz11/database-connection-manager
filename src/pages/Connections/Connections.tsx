@@ -47,9 +47,9 @@ const Connections = () => {
     <div className="connections-page">
       <button onClick={onShowCloseDialog}>+</button>
 
-      {/* {showAddConnectionDialog && (
-        <ConnectionForm onClose={onShowCloseDialog} />
-      )} */}
+      {showAddConnectionDialog && (
+        <ConnectionFormDialog onClose={onShowCloseDialog} />
+      )}
 
       <div className="connection-table-container">
         <BasicTable

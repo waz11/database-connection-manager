@@ -7,6 +7,8 @@ import {
   connectionTypes,
 } from "../../utils";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addConnection } from "../../store/connections/actions";
 
 interface IProps {
   fields: IField[];
@@ -15,6 +17,8 @@ interface IProps {
 }
 
 const ConnectionForm = ({ fields, connection, isEditMode }: IProps) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     getValues,
@@ -29,10 +33,8 @@ const ConnectionForm = ({ fields, connection, isEditMode }: IProps) => {
     }
   }, []);
 
-  const onSubmit = async (data: any) => {
-    await axios
-      .post(SERVER_URL, data)
-      .then((response) => console.log(response));
+  const onSubmit = async (connection: any) => {
+    dispatch(addConnection(connection) as any);
   };
 
   return (

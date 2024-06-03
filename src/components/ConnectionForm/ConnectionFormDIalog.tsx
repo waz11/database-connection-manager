@@ -2,23 +2,27 @@ import axios from "axios";
 import { SERVER_URL, addingConnectionFields } from "../../utils";
 import ConnectionForm from "./ConnectionForm";
 import FormDialog from "./FormDialog";
+import { useDispatch } from "react-redux";
+import { addConnection } from "../../store/connections/actions";
 
 const connectionFormDialogTitle = "New DB Connection Details";
 
-const onSubmit = async (data: any) => {
-  await axios
-    .post(SERVER_URL, { data })
-    .then((response) => console.log(response));
-};
+const ConnectionFormDialog = ({ onClose }: any) => {
+  const dispatch = useDispatch();
 
-const ConnectionFormDialog = ({ onClose }: any) => (
-  <FormDialog
-    title={connectionFormDialogTitle}
-    onClose={onClose}
-    onSubmit={onSubmit}
-  >
-    <ConnectionForm fields={addingConnectionFields} />
-  </FormDialog>
-);
+  const onSubmit = async (connection: any) => {
+    dispatch(addConnection(connection) as any);
+  };
+
+  return (
+    <FormDialog
+      title={connectionFormDialogTitle}
+      onClose={onClose}
+      // onSubmit={onSubmit}
+    >
+      <ConnectionForm fields={addingConnectionFields} />
+    </FormDialog>
+  );
+};
 
 export default ConnectionFormDialog;
