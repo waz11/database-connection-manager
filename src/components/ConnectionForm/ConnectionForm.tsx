@@ -2,7 +2,7 @@ import "./ConnectionForm.scss";
 import { useForm } from "react-hook-form";
 import { IField } from "../../utils";
 import { useEffect } from "react";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import DropDown from "../Dropdown/DropDown";
 
 interface IProps {
@@ -57,12 +57,19 @@ const ConnectionForm = ({ fields, connection, onSubmit, onClose }: IProps) => {
       </div>
 
       <div className="actions">
-        {onClose && <button onClick={onClose}>Cancel</button>}
+        {onClose && (
+          <Button variant="outlined" onClick={onClose}>
+            Cancel
+          </Button>
+        )}
 
         {onSubmit && (
-          <button onClick={handleSubmit(() => onSubmit(getValues()))}>
+          <Button
+            variant="contained"
+            onClick={handleSubmit(() => onSubmit(getValues()))}
+          >
             Save
-          </button>
+          </Button>
         )}
       </div>
     </div>

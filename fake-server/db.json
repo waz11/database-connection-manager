@@ -23,6 +23,14 @@
       "username": "user3",
       "password": "password3",
       "type": "MySQL"
+    },
+    {
+      "id": "0fa5",
+      "name": "dfg",
+      "url": "dfg",
+      "username": "dfg",
+      "password": "dfg",
+      "type": "Snowflake"
     }
   ]
 }
