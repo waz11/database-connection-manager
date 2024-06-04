@@ -11,19 +11,19 @@ interface IProps {
   label: string;
   options: string[];
   defaultValue?: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
   isEditMode?: boolean;
   value?: string;
 }
 
-const DropDown = ({
+const DropdownField = ({
   onChange,
   label,
   options,
   value,
   isEditMode,
   defaultValue = options[0],
-}: IProps) => {
+}: any) => {
   useEffect(() => {
     onChange(defaultValue);
     console.log(defaultValue);
@@ -40,7 +40,7 @@ const DropDown = ({
         onChange={(e) => onChange(e.target.value)}
         value={value}
       >
-        {options.map((option) => (
+        {options.map((option: string) => (
           <MenuItem key={option} value={option}>
             {option}
           </MenuItem>
@@ -50,4 +50,4 @@ const DropDown = ({
   );
 };
 
-export default DropDown;
+export default DropdownField;

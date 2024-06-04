@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { IField } from "../../utils";
 import { useEffect } from "react";
 import { Button, FormControl, TextField } from "@mui/material";
-import DropDown from "../Dropdown/DropDown";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
+import DropdownField from "../DropdownField/DropdownField";
 
 interface IProps {
   fields: IField[];
@@ -28,7 +28,7 @@ const ConnectionForm = ({
     getValues,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm();
 
   useEffect(() => {
@@ -45,13 +45,13 @@ const ConnectionForm = ({
         {fields.map(({ id, title, type = "text", options, required }) => (
           <div key={id}>
             {isEditMode && options ? (
-              <DropDown
+              <DropdownField
                 label={`${title}${required ? " *" : ""}`}
                 options={options}
                 {...register(id, {
                   required,
                 })}
-                onChange={(value) => setValue(id, value)}
+                onChange={(value: any) => setValue(id, value)}
                 isEditMode={isEditMode}
                 defaultValue={connection ? connection?.[id] || " " : undefined}
                 value={watch(id)}

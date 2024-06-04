@@ -26,7 +26,10 @@ const ConnectionDetails = () => {
       <div className="connection-wrapper">
         <h2 className="title">Connection Details - id: {connection.id}</h2>
         <div className="info">
-          <ConnectionForm fields={connectionFields} connection={connection} />
+          <ConnectionForm
+            fields={connectionFields.filter((field) => field.id !== "id")}
+            connection={connection}
+          />
         </div>
       </div>
     </div>
