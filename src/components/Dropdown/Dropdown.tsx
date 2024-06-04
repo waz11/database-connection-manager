@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { MenuItem, TextField } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 
 interface IProps {
   label: string;
@@ -24,25 +30,23 @@ const DropDown = ({
   }, [defaultValue]);
 
   return (
-    <TextField
-      id="standard-select-currency-native"
-      select
-      label={label}
-      SelectProps={{
-        native: true,
-        readOnly: true,
-      }}
-      variant="standard"
-      inputProps={{ readOnly: !isEditMode }}
-      onChange={(e) => onChange(e.target.value)}
-      value={value}
-    >
-      {options.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </TextField>
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        label={label}
+        inputProps={{ readOnly: !isEditMode }}
+        onChange={(e) => onChange(e.target.value)}
+        value={value}
+      >
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
