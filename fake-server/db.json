@@ -23,14 +23,6 @@
       "username": "user3",
       "password": "password3",
       "type": "MySQL"
-    },
-    {
-      "id": "70d5",
-      "name": "sdf",
-      "url": "dsfdsf",
-      "username": "dsfds",
-      "password": "fsdf",
-      "type": "Trino"
     }
   ]
 }
