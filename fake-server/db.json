@@ -55,6 +55,22 @@
       "username": "sdf",
       "password": "sdf",
       "type": "MySQL"
+    },
+    {
+      "id": "ca32",
+      "name": "fgh",
+      "url": "fgh",
+      "username": "vvhgfhfh",
+      "password": "gfhgfh",
+      "type": "Trino"
+    },
+    {
+      "id": "d5a5",
+      "name": "1111",
+      "url": "1111",
+      "username": "111",
+      "password": "1111",
+      "type": "Trino"
     }
   ]
 }

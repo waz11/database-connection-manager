@@ -2,7 +2,7 @@ import "./ConnectionForm.scss";
 import { useForm } from "react-hook-form";
 import { IField } from "../../utils";
 import { useEffect } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, TextField } from "@mui/material";
 import DropDown from "../Dropdown/DropDown";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
@@ -57,15 +57,19 @@ const ConnectionForm = ({
                 value={watch(id)}
               />
             ) : (
-              <TextField
-                id={id}
-                label={`${title}${required ? " *" : ""}`}
-                {...register(id, {
-                  required,
-                })}
-                defaultValue={connection ? connection?.[id] || " " : undefined}
-                inputProps={{ readOnly: !isEditMode }}
-              />
+              <FormControl fullWidth>
+                <TextField
+                  id={id}
+                  label={`${title}${required ? " *" : ""}`}
+                  {...register(id, {
+                    required,
+                  })}
+                  defaultValue={
+                    connection ? connection?.[id] || " " : undefined
+                  }
+                  inputProps={{ readOnly: !isEditMode }}
+                />
+              </FormControl>
             )}
           </div>
         ))}

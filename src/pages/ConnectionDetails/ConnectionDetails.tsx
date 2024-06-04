@@ -23,11 +23,11 @@ const ConnectionDetails = () => {
   return (
     <div className="connection-details">
       <NavigateButton label={"back to connections"} route={ROUTES.HOME} />
-
-      <div className="title">Connection Details</div>
-
-      <div className="info">
-        <ConnectionForm fields={connectionFields} connection={connection} />
+      <div className="connection-wrapper">
+        <h2 className="title">Connection Details - id: {connection.id}</h2>
+        <div className="info">
+          <ConnectionForm fields={connectionFields} connection={connection} />
+        </div>
       </div>
     </div>
   );

@@ -1,2 +1,18 @@
 .connection-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .connection-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-style: outset;
+    width: 310px;
+    padding: 20px;
+
+    .info {
+      width: 300px;
+    }
+  }
 }
