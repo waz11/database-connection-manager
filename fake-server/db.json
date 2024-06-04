@@ -25,44 +25,28 @@
       "type": "MySQL"
     },
     {
-      "id": "0fa5",
-      "name": "dfg",
-      "url": "dfg",
-      "username": "dfg",
-      "password": "dfg",
+      "id": "133e",
+      "name": "1",
+      "url": "1",
+      "username": "1",
+      "password": "1",
       "type": "Snowflake"
     },
     {
-      "id": "35a9",
-      "name": "l;kl;kl",
-      "url": ";klkl;",
-      "username": "k;lk",
-      "password": "llk;",
-      "type": "Trino"
-    },
-    {
-      "id": "f256",
-      "name": "m,.",
-      "url": "m,.",
-      "username": "m,.",
-      "password": "k.",
+      "id": "7f9f",
+      "name": "2",
+      "url": "2",
+      "username": "2",
+      "password": "2",
       "type": "Snowflake"
     },
     {
-      "id": "c16f",
-      "name": "sdfd",
-      "url": "sdfds",
-      "username": "sdf",
-      "password": "sdfds",
+      "id": "8d85",
+      "name": "3",
+      "url": "3",
+      "username": "3",
+      "password": "3",
       "type": "Snowflake"
-    },
-    {
-      "id": "a055",
-      "name": "sdf",
-      "url": "sdf",
-      "username": "dsf",
-      "password": "sdf",
-      "type": "MySQL"
     }
   ]
 }

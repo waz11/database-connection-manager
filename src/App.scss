@@ -1,9 +1,10 @@
-body {
+.app {
   display: flex;
   flex-direction: column;
-  height: 96vh;
-}
-
-#root {
   height: 100%;
+
+  .page {
+    flex: 1;
+    overflow: hidden;
+  }
 }

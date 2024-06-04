@@ -1,19 +1,19 @@
 import "./Connections.scss";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import BasicTable, { ITableField } from "../../components/Table/BasicTable";
 import ConnectionFormDialog from "../../components/ConnectionForm/ConnectionFormDIalog";
-import { SERVER_URL } from "../../utils";
-import ConnectionForm from "../../components/ConnectionForm/ConnectionForm";
 import { useDispatch, useSelector } from "react-redux";
 import { connectionsSelector } from "../../store/connections/selectors";
 import { getConnections } from "../../store/connections/actions";
+import DataGridDemo, {
+  ITableField,
+} from "../../components/DataGrid/DataGridDemo";
+import AddIcon from "@mui/icons-material/Add";
 
-const tableFields: ITableField[] = [
-  { id: "name", title: "Database Name" },
-  { id: "username", title: "Username" },
-  { id: "type", title: "Database Type" },
+const columns: ITableField[] = [
+  { field: "name", headerName: "Database Name", width: 150 },
+  { field: "username", headerName: "Username", width: 150 },
+  { field: "type", headerName: "Database Type", width: 150 },
 ];
 
 export interface IConnection {
@@ -45,16 +45,18 @@ const Connections = () => {
 
   return (
     <div className="connections-page">
-      <button onClick={onShowCloseDialog}>+</button>
+      <button className="add-icon" onClick={onShowCloseDialog}>
+        <AddIcon />
+      </button>
 
       {showAddConnectionDialog && (
         <ConnectionFormDialog onClose={onShowCloseDialog} />
       )}
 
       <div className="connection-table-container">
-        <BasicTable
-          tableFields={tableFields}
-          data={connections}
+        <DataGridDemo
+          columns={columns}
+          rows={connections}
           onRowClick={onRowClick}
         />
       </div>

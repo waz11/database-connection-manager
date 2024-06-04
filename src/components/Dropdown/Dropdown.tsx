@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-
-import { TextField } from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 
 interface IProps {
   label: string;
@@ -29,9 +28,9 @@ const DropDown = ({
       id="standard-select-currency-native"
       select
       label={label}
-      // defaultValue={defaultValue}
       SelectProps={{
         native: true,
+        readOnly: true,
       }}
       variant="standard"
       inputProps={{ readOnly: !isEditMode }}
@@ -39,9 +38,9 @@ const DropDown = ({
       value={value}
     >
       {options.map((option) => (
-        <option key={option} value={option}>
+        <MenuItem key={option} value={option}>
           {option}
-        </option>
+        </MenuItem>
       ))}
     </TextField>
   );

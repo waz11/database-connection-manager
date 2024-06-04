@@ -4,6 +4,8 @@ import { IField } from "../../utils";
 import { useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import DropDown from "../Dropdown/DropDown";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
 
 interface IProps {
   fields: IField[];
@@ -26,7 +28,7 @@ const ConnectionForm = ({
     getValues,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const ConnectionForm = ({
       <div className="form-fields">
         {fields.map(({ id, title, type = "text", options, required }) => (
           <div key={id}>
-            {options ? (
+            {isEditMode && options ? (
               <DropDown
                 label={`${title}${required ? " *" : ""}`}
                 options={options}
@@ -71,7 +73,11 @@ const ConnectionForm = ({
 
       <div className="actions">
         {onClose && (
-          <Button variant="outlined" onClick={onClose}>
+          <Button
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            onClick={onClose}
+          >
             Cancel
           </Button>
         )}
@@ -79,13 +85,13 @@ const ConnectionForm = ({
         {onSubmit && (
           <Button
             variant="contained"
+            endIcon={<SendIcon />}
             onClick={handleSubmit(() => onSubmit(getValues()))}
+            disabled={!isValid}
           >
             Save
           </Button>
         )}
-
-        <button onClick={() => console.log(errors)}>sdfsdf</button>
       </div>
     </div>
   );
